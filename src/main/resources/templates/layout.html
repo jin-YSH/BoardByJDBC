@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">게시판</title>
+    <style>
+        body { width: 80%; margin: 20px auto; font-family: Arial, sans-serif; }
+        h1 { border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px; }
+        .meta { color: gray; font-size: 0.9em; margin-bottom: 15px; }
+        .content { white-space: pre-line; border: 1px solid #ddd; padding: 15px; min-height: 150px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9; }
+        .form-group { margin-bottom: 15px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .error { color: red; font-size: 0.9em; }
+        .buttons { margin-top: 20px; }
+        .buttons a, .buttons button { margin-right: 10px; text-decoration: none; padding: 8px 15px; background-color: #007BFF; color: white; border-radius: 5px; border: none; cursor: pointer; }
+        .buttons a:hover, .buttons button:hover { background-color: #0056b3; }
+        table { width: 100%; border-collapse: collapse; }
+        table th, table td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        table th { background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+<h1 th:text="${pageTitle}">페이지 제목</h1>
+<div th:fragment="content"></div> <!-- 여기가 자식 페이지 내용이 들어갈 자리 -->
+</body>
+</html>

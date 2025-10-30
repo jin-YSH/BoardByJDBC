@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 작성</title>
+    <style>
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            background-color: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            padding: 50px 0;
+        }
+        .container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 600px;
+            padding: 30px 40px;
+        }
+        h1 { text-align: center; margin-bottom: 25px; color: #333; font-size: 1.8em; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; color: #333; }
+        input[type="text"], input[type="password"], textarea {
+            width: 100%; padding: 10px 12px; margin-bottom: 15px;
+            border: 1px solid #ccc; border-radius: 6px; font-size: 14px; box-sizing: border-box;
+        }
+        textarea { height: 200px; resize: vertical; }
+        .error { color: #e74c3c; font-size: 13px; margin-top: -10px; margin-bottom: 10px; }
+        .btn-group { display: flex; justify-content: space-between; margin-top: 25px; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; font-size: 15px; border-radius: 6px; cursor: pointer; transition: 0.2s ease; }
+        button:hover { background-color: #0056b3; }
+        a { display: inline-block; padding: 10px 20px; text-decoration: none; color: #333; border: 1px solid #ccc; border-radius: 6px; transition: 0.2s ease; }
+        a:hover { background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>글 작성</h1>
+    <form th:action="@{/write}" th:object="${board}" method="post">
+        <div>
+            <label>이름</label>
+            <input type="text" th:field="*{name}" />
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label>제목</label>
+            <input type="text" th:field="*{title}" />
+            <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+        </div>
+        <div>
+            <label>비밀번호</label>
+            <input type="password" th:field="*{password}" />
+            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </div>
+        <div>
+            <label>내용</label>
+            <textarea th:field="*{content}" rows="10"></textarea>
+            <span class="error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+        </div>
+        <div class="btn-group">
+            <button type="submit">등록</button>
+            <a href="/list">취소</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

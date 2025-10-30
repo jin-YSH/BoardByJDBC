@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${board.title}">게시글 보기</title>
+    <style>
+        body {
+            width: 80%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .meta {
+            color: gray;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .content {
+            white-space: pre-line;
+            border: 1px solid #ddd;
+            padding: 15px;
+            min-height: 150px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .buttons a {
+            margin-right: 10px;
+            text-decoration: none;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .buttons a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${board.title}">게시글 제목</h1>
+
+<div class="meta">
+    작성자: <span th:text="${board.name}">작성자</span> |
+    등록일:
+    <span th:text="${board.createdAt != null ? #dates.format(board.createdAt, 'yyyy-MM-dd HH:mm') : '-'}"></span> |
+    수정일:
+    <span th:text="${board.updatedAt != null ? #dates.format(board.updatedAt, 'yyyy-MM-dd HH:mm') : '-'}"></span>
+</div>
+
+<div class="content" th:text="${board.content}">게시글 내용</div>
+
+<div class="buttons">
+    <a href="/list">목록</a>
+    <a th:href="@{/updateform(id=${board.id})}">수정</a>
+    <a th:href="@{/deleteform(id=${board.id})}">삭제</a>
+</div>
+</body>
+</html>
