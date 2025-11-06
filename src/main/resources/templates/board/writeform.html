@@ -36,6 +36,9 @@
 <body>
 <div class="container">
     <h1>글 작성</h1>
+    <div class="message" th:if="${errorMessage}" th:text="${errorMessage}"
+         style="color:#e74c3c; font-weight:500; margin-bottom:10px;"></div>
+
     <form th:action="@{/write}" th:object="${board}" method="post">
         <div>
             <label>이름</label>

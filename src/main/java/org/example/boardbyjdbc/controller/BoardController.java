@@ -51,7 +51,8 @@ public class BoardController {
                         RedirectAttributes redirectAttributes,
                         Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("board", board); // ✅ board 객체를 다시 넣어줌
+            model.addAttribute("board", board); // 폼 유지
+            model.addAttribute("errorMessage", "입력하신 내용을 다시 확인해주세요."); // ✅ 공통 에러 메시지 추가
             return "board/writeform";
         }
 
@@ -90,9 +91,11 @@ public class BoardController {
         // 1️⃣ 유효성 검사 실패 시
         if (bindingResult.hasErrors()) {
             model.addAttribute("boardId", id);
-            model.addAttribute("board", board); // 폼 유지
+            model.addAttribute("board", board);
+            model.addAttribute("errorMessage", "입력하신 내용을 다시 확인해주세요.");
             return "board/updateform";
         }
+
 
         try {
             boardService.updateBoard(id, board);
